@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block title %}Travel Information{% endblock %}   
+{% block content %}
+    <div class="container mt-5">
+        <h1 class="mb-4">Travel Information</h1>
+        <div class="card">
+            {% if booking.travel_option.image %}
+                            <div class="col-md-4">
+                                <img src="{{ booking.travel_option.image.url }}" class="img-fluid rounded" alt="Travel Image" style="height: 200px; width: 100%; object-fit: cover;">
+                            </div>
+                            {% endif %}
+            <div class="card-body">
+                <h5 class="card-title">{{ travel.type }}: {{ travel.source }} to {{ travel.destination }}</h5>
+                <p class="card-text">Date: {{ travel.date_time }}</p>
+                <p class="card-text">Price: ${{ travel.price }}</p>
+                <p class="card-text">Seats Available: {{ travel.available_seats }}</p>
+                {% if error %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ error }}
+                    </div>
+                {% endif %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="seats">Number of Seats</label>
+                        <input type="number" name="seats" id="seats" class="form-control" min="1" max="{{ travel.available_seats }}" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary mt-3">Book Now</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

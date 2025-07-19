@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Profile
+{% endblock %}
+
+{% block content %}
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <h3 class="mb-4">Profile</h3>
+                <div class="card p-4">
+                    <p><strong>Username:</strong> {{ user.username }}</p>
+                    <p><strong>Email:</strong> {{ user.email }}</p>
+                    <a href="{% url 'update_profile' %}" class="btn btn-primary">Update Profile</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
