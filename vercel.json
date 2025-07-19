@@ -1,5 +1,3 @@
-vercel.json code:
-
 {
     "builds": [{
         "src": "TravelBookingApplication/wsgi.py",
